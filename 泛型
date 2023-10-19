@@ -1,0 +1,23 @@
+当然可以。这是一个简单的Java代码示例，它定义了一个泛型类`Box`，并在主函数中创建了一个`Box`对象：
+
+```java
+public class Box<T> {
+    private T t;
+
+    public void set(T t) {
+        this.t = t;
+    }
+
+    public T get() {
+        return t;
+    }
+
+    public static void main(String[] args) {
+        Box<Integer> integerBox = new Box<Integer>();
+        integerBox.set(new Integer(10));
+        System.out.printf("Integer Value :%d\n", integerBox.get());
+    }
+}
+```
+在这个例子中，`Box`是一个泛型类，它可以用于存储任何类型的对象。在主函数中，我们创建了一个`Box<Integer>`对象，
+并使用`set()`方法将一个整数存入其中，然后使用`get()`方法取出并打印这个整数。希望这个例子对您有所帮助！

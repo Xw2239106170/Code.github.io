@@ -11,6 +11,14 @@
             margin: 0;
         }
 
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* 防止滚动条出现 */
+          }
+
         body {
             width: 100%;
             height: 100vh;
@@ -18,8 +26,6 @@
             background-color: black;
             background-image: radial-gradient(white 1%, transparent 2%);
             background-size: 3px 3px;
-
-
         }
 
         canvas {
@@ -27,15 +33,46 @@
             width: 100%;
             height: 100%;
         }
+        p{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            
+            font-size: 50px;
+            opacity: 1;
+            text-align: center;
+            font-family: 'Shadows Into Light', cursive;
+            font-family: 'Fredoka One', cursive;
+            /*设置颜色变浅*/
+            color: rgb(244, 244, 244, 0.4);
+            letter-spacing: 2px;
+          }
     </style>
 </head>
 
 <body>
 
-    <canvas></canvas>
+    <canvas id="myCanvas">
+    </canvas>
+    <p>到了太阳第一次照到你的日子了，希望以后星星永远陪着你，小奇生日快乐咯😀</p>
 
 </body>
 <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const p = document.querySelector('p'); // 获取 <p> 元素
+        let opacity = 0;
+        const interval = setInterval(function() {
+            opacity += 0.02;
+            p.style.opacity = opacity;
+            if (opacity >= 1) {
+                clearInterval(interval);
+            }
+        }, 105);
+    });
+    const canvas = document.querySelector('#myCanvas')
+    const ctx = canvas.getContext("2d");
 
     // 定义星星的颜色
     const STAR_COLOR = '#fff';
@@ -48,7 +85,6 @@
     // 定义星星的数量
     const STAR_COUNT = (window.innerWidth + window.innerHeight) / 8;
     // 获取canvas元素
-    const canvas = document.querySelector('canvas');
     // 获取canvas的绘图上下文
     const context = canvas.getContext('2d');
     // 定义缩放比例
